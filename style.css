@@ -1,0 +1,384 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background: #c1b2b4;
+}
+
+.no-outline {
+  outline: none;
+}
+
+input {
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  color: #5b4447;
+}
+
+input::placeholder {
+  color: #c1b2b4;
+}
+
+input:focus::placeholder {
+  color: white;
+}
+
+.ease,
+input::placeholder {
+  transition: all .2s ease;
+}
+
+.point {
+  cursor: pointer;
+}
+
+.display-red {
+  color: #e26d5a;
+  fill: #e26d5a;
+}
+
+/*--------------------TOP SECTION--------------------*/
+.top-section {
+  background: #3e2a35;
+}
+/*---------------HEADER---------------*/
+header{
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 35px 0px 35px;
+}
+
+.logo-container {
+  width: 40%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.logo-container h1 {
+  font-size: 57px;
+  font-weight: 800;
+  margin-right: 12px;
+}
+
+.logo-container:hover,
+.logo-container:hover .camera-svg .lense,
+.logo-container:hover .camera-svg .lense-glare,
+.logo-container:hover .camera-svg .camera-body {
+  color: #5b4447;
+  fill: #5b4447;
+}
+
+/*-----CAMERA SVG-----*/
+.camera-svg {
+  min-width: 67px;
+  margin-right: 12px;
+}
+
+.camera-body {
+  fill: #e26d5a;
+}
+
+.lense,
+.lense-glare {
+  fill: #fff;
+}
+
+/*-----SEARCH BAR-----*/
+.search-container {
+  display: flex;
+}
+
+.search-container:hover .search {
+  border-color: #6d5659;
+}
+
+.search-container:hover .search-btn {
+  background: #6d5659;
+}
+
+.search {
+  height: 50px;
+}
+
+.search-bar {
+  width: 370px;
+  border: solid #c1b2b4;
+  border-width: 4px 0px 4px 4px;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.search-btn {
+  width: 55px;
+  background: #c1b2b4;
+  border: solid #c1b2b4;
+  border-width: 4px 4px 4px 0px;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.search-btn:hover .magnifying-glass path {
+  fill: #3e2a35;
+}
+
+/*-----MAGNIFYING GLASS SVG-----*/
+.magnifying-glass {
+  fill: white;
+  width: 30px;
+}
+
+/*----------FOTO FORM----------*/
+.foto-form {
+  height: 570px;
+  width: 815px;
+  margin: auto;
+  padding: 35px 55px 0px 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-label {
+  align-self: flex-start;
+  font-size: 22px;
+  font-weight: 700;
+  padding-bottom: 10px;
+  margin-top: 20px;
+  color: #c1b2b4;
+  width: 100%;
+}
+
+.form-label:hover + input,
+.foto-form input:hover {
+  border: solid #c1b2b4 4px;
+}
+
+.foto-form input,
+.foto-form button,
+.upload-btn {
+  width: 100%;
+  height: 65px;
+  border: solid #fff 4px;
+}
+
+.hide-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.foto-form button,
+.upload-btn {
+  background: #5b4447;
+  border: none;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.foto-form button:hover,
+.upload-btn:hover {
+  background: #4a3437;
+}
+
+.view-faves-btn,
+.upload-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.view-faves-btn span {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foto-form .upload-btn {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.foto-form span {
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+  width: 100%;
+}
+
+.foto-form span button {
+  width: 45%;
+}
+
+/*--------------------BOTTOM SECTION--------------------*/
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 35px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: .5em;
+}
+
+/*----------CARD STYLING----------*/
+.card {
+  border: solid #928283 4px;
+  height: 390px;
+  width: 280px;
+  margin: 35px auto 0px; 
+  /*margin: auto;*/
+  /**/
+  display: grid;
+  grid-template-rows: 50px 11fr 7fr 60px;
+  grid-template-areas: 
+  "title"
+  "image"
+  "caption"
+  "footer";
+}
+
+.card * {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  border-color: #5b4447;
+}
+
+/*-----CARD TITLE-----*/
+.card-title {
+  grid-area: title;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  padding: 10px;
+  background: #fff;
+}
+
+.card-title h4 {
+  height: 50%;
+  font-size: 1.5vw;
+}
+
+/*-----CARD IMG-----*/
+.card img {
+  grid-area: image;
+}
+
+/*-----CARD CAPTION-----*/
+.card-caption {
+  grid-area: caption;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  background: #fff;
+}
+ 
+/*-----CARD FOOTER-----*/
+.card-footer {
+  grid-area: footer;
+  background: #5b4447;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/*---CARD SVGs---*/
+.card svg {
+  width: 40px;
+}
+
+.card svg path {
+  fill: #938284;
+}
+
+.card svg:hover path {
+  fill: #fff;
+}
+
+/*--------------------MEDIA QUERIES--------------------*/
+@media only screen and (max-width:1080px) {
+  /*dont let cards get any closer together*/
+  /*2 cards per row, bigger*/
+}
+
+
+@media only screen and (max-width:990px) {
+  header{
+    width: 815px;
+    height: 200px;
+    margin: auto;
+    align-items: center;
+    flex-direction: column;
+    padding: 0px 55px;
+  }
+
+  .logo-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .logo-container h1 {
+    font-size: 85px;
+    margin: 0px;
+  }
+
+  /*-----CAMERA SVG-----*/
+  .camera-svg {
+    min-width: 100px;
+    margin: 0px;
+  }
+
+  /*-----SEARCH BAR-----*/
+  .search-container {
+    width: 100%;
+  }
+
+  .search {
+    height: 65px;
+  }
+
+  .search-bar {
+    width: 85%;
+  }
+
+  .search-btn {
+    width: 15%;
+  }
+
+  /*-----MAGNIFYING GLASS SVG-----*/
+  .magnifying-glass {
+    width: 45px;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+  }
+
+  .card {
+    height: 585px;
+    width: 420px;
+  }
+
+  .card-title h4 {
+    font-size: 2.5vw;
+  }
+}
+
