@@ -51,7 +51,7 @@ var reader = new FileReader();
 window.addEventListener('load', appendPhotos);
 albumButton.addEventListener('click', createElement);
 
-function appendPhotos(e) {
+function appendPhotos() {
   imagesArray.forEach(function (photo) {
     cardGallery.innerHTML += 
     `<article class="card ease" data-id="${photo.id}">

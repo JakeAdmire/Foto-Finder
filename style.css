@@ -289,6 +289,7 @@ button.disabled:hover {
 .card img {
   grid-area: image;
   object-fit: cover;
+  height: 100%;
 }
 
 /*-----CARD CAPTION-----*/
