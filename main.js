@@ -1,15 +1,51 @@
 var albumButton = document.querySelector(".album-btn");
-var uploadButton = document.querySelector(".hide-input");
-var uploadLabel = document.querySelector(".upload-btn");
+var hiddenInput = document.querySelector(".hide-input");
+var uploadButton = document.querySelector(".upload-btn");
+var titleInput = document.querySelector(".title-input");
+var captionInput = document.querySelector(".caption-input");
+
+
+// Change text of file select button to file name
+hiddenInput.addEventListener("change", changeUploadText);
+function changeUploadText() {
+  uploadButton.innerText = hiddenInput.files[0].name;
+}
+
+// Enable addToAlbumButton when text is in the form
+titleInput.addEventListener("keyup", enableUpload);
+captionInput.addEventListener("keyup", enableUpload);
+
+
+// ---------- SHOULD THIS BE TWO DIFFERENT FUNCTIONS?
+function enableUpload() {
+ if (titleInput.value.length > 0 && captionInput.value.length > 0) {
+  albumButton.classList.remove("disabled");
+  albumButton.disabled = false;
+ } else {
+  albumButton.classList.add("disabled");
+  albumButton.disabled = true;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------
+
 var photoGallery = document.querySelector('.images');
 var imagesArr = JSON.parse(localStorage.getItem('photos')) || [];
 var reader = new FileReader();
-
-uploadButton.addEventListener("change", changeUploadText);
-function changeUploadText() {
-  uploadLabel.innerText = uploadButton.files[0].name;
-}
-
 
 
 window.addEventListener('load', appendPhotos);
