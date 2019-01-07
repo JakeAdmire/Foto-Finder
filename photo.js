@@ -1,13 +1,15 @@
 class Photo {
 
-  constructor(id, file) {
+  constructor(id, title, file, caption) {
     this.id = id;
+    this.title = title;
     this.file = file;
+    this.caption = caption;
   }
 
 
   saveToStorage(imagesArray) {
-    localStorage.setItem('photos', JSON.stringify(imagesArr));
+    localStorage.setItem(this.id, JSON.stringify(imagesArray));
   }
 
 
