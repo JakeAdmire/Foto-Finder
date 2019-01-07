@@ -3,10 +3,16 @@ var hiddenInput = document.querySelector(".hide-input");
 var uploadButton = document.querySelector(".upload-btn");
 var titleInput = document.querySelector(".title-input");
 var captionInput = document.querySelector(".caption-input");
+var fileInput = document.querySelector('.hide-input[type="file"]');
+// 
+var cardGallery = document.querySelector(".card-container");
+var imagesArray = JSON.parse(localStorage.getItem('keys')) || [];
+var reader = new FileReader();
 
 
 // Change text of file select button to file name
 hiddenInput.addEventListener("change", changeUploadText);
+
 function changeUploadText() {
   uploadButton.innerText = hiddenInput.files[0].name;
 }
@@ -14,11 +20,12 @@ function changeUploadText() {
 // Enable addToAlbumButton when text is in the form
 titleInput.addEventListener("keyup", enableUpload);
 captionInput.addEventListener("keyup", enableUpload);
+fileInput.addEventListener("change", enableUpload);
 
 
 // ---------- SHOULD THIS BE TWO DIFFERENT FUNCTIONS?
 function enableUpload() {
- if (titleInput.value.length > 0 && captionInput.value.length > 0) {
+ if (titleInput.value.length > 0 && captionInput.value.length > 0 && hiddenInput.files.length === 1) {
   albumButton.classList.remove("disabled");
   albumButton.disabled = false;
  } else {
@@ -43,17 +50,12 @@ function enableUpload() {
 // ------------------------------------------------------------
 // ------------------------------------------------------------
 
-var cardGallery = document.querySelector(".card-container");
-var imagesArray = JSON.parse(localStorage.getItem('keys')) || [];
-var reader = new FileReader();
-
 
 window.addEventListener('load', appendPhotos);
 albumButton.addEventListener('click', createElement);
 
 window.onload = function() {
   var keys = Object.keys(localStorage);
-  console.log(keys.length);
   for (var i = 0; i < keys.length; i++) {
     var parseObj = JSON.parse(localStorage.getItem(keys[i]));
     var newPhoto = new Photo(parseObj.id, parseObj.title, parseObj.file, parseObj.caption);
