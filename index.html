@@ -31,9 +31,9 @@
       </header>
       <form class="foto-form">
         <label class="form-label" for="title">Title</label>
-        <input class="no-outline ease" type="text" id="title" placeholder="Enter 'Foto' Title...">
+        <input class="no-outline ease title-input" type="text" id="title" placeholder="Enter 'Foto' Title...">
         <label class="form-label" for="caption">Caption</label>
-        <input class="no-outline ease" type="text" id="caption" placeholder="Enter 'Foto' Caption...">
+        <input class="no-outline ease caption-input" type="text" id="caption" placeholder="Enter 'Foto' Caption...">
 
         <input id="upload-input" type="file" accept="image/png, image/jpg" class="hide-input" />
         <label for="upload-input" class="upload-btn no-outline ease point">Choose File</label>
@@ -41,7 +41,7 @@
         <span>
           <button class="view-faves-btn no-outline ease point">
           View <span class="display-red">0</span> Favorites</button>
-          <button class="album-btn no-outline ease point">
+          <button disabled class="album-btn no-outline ease point disabled">
           Add to Album</button>
         </span>
       </form>
