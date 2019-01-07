@@ -288,6 +288,7 @@ button.disabled:hover {
 /*-----CARD IMG-----*/
 .card img {
   grid-area: image;
+  object-fit: cover;
 }
 
 /*-----CARD CAPTION-----*/
