@@ -72,9 +72,6 @@ function editContent(e) {
 
 // ------------------------------------------------------------
 // ------------------------------------------------------------
-
-
-window.addEventListener('load', appendPhotos);
 albumButton.addEventListener('click', createElement);
 
 window.onload = function() {
