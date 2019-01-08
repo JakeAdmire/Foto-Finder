@@ -274,10 +274,10 @@ button.disabled:hover {
 /*-----CARD TITLE-----*/
 .card-title {
   grid-area: title;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: 10px;
+  /*display: flex;*/
+  /*align-content: center;*/
+  /*justify-content: center;*/
+  padding: 6px;
   background: #fff;
 }
 
@@ -291,7 +291,7 @@ button.disabled:hover {
 /*-----CARD CAPTION-----*/
 .card-caption {
   grid-area: caption;
-  padding: 10px;
+  padding: 6px;
   font-size: 18px;
   font-weight: 600;
   background: #fff;
