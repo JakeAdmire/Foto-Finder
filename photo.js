@@ -14,7 +14,7 @@ class Photo {
 
 
   deleteFromStorage() {
-
+    localStorage.removeItem(this.id);
   }
 
 
