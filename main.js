@@ -37,7 +37,7 @@ function enableUpload() {
 
 
 
-cardGallery.addEventListener("click", manipulateCard);
+cardGallery.addEventListener("focusin", manipulateCard);
 
 function manipulateCard(e) {
   if (e.target.classList.contains("trash-svg")) {
@@ -45,20 +45,35 @@ function manipulateCard(e) {
   } else if (e.target.classList.contains("fave-svg")) {
     console.log('you clicked favorite');
     favoriteCard();
+  } else if (e.target.classList.contains('card-title') || e.target.classList.contains('card-caption')) {
+    e.target.onblur = function(event) {
+      editContent(e);
+    }
   }
 }
 
 
-
-// event listener for enter key (key code 13) triggers a function
-titleInput.addEventListener("keydown", editContent);
-captionInput.addEventListener("keydown", editContent);
-  // then focus lost on the editable card
 function editContent(e) {
-  if (e.keyCode === 13) {
-    e.target.toggleAttribute("contenteditable");
-  }
+  var number = e.target.closest('article').dataset.id;
+  var index = imagesArray.find(function(image) {
+    return parseInt(number) === image.id;
+  });
+  if (e.target.classList.contains('card-title')) {
+    index.updatePhoto(e.target.innerText, 'card-title');
+  } else {
+    index.updatePhoto(e.target.innerText, 'card-caption');
+  };
+  index.saveToStorage(imagesArray);
 }
+// event listener for enter key (key code 13) triggers a function
+// titleInput.addEventListener("keydown", editContent);
+// captionInput.addEventListener("keydown", editContent);
+//   // then focus lost on the editable card
+// function editContent(e) {
+//   if (e.keyCode === 13) {
+//     e.target.toggleAttribute("contenteditable");
+//   }
+// }
 
 
 
@@ -113,11 +128,11 @@ function appendPhotos(photo) {
   cardGallery.innerHTML += 
   `<article class="card ease" data-id="${photo.id}">
       <section class="card-title">
-        <h4 contenteditable="true">${photo.title}</h4>
+        <h4 class="card-title" contenteditable="true">${photo.title}</h4>
       </section>
       <img src=${photo.file} />
       <section class="card-caption">
-        <p contenteditable="true">${photo.caption}</p>
+        <p class="card-caption" contenteditable="true">${photo.caption}</p>
       </section>
       <section class="card-footer">
         <svg class="trash-svg point" viewBox="0 0 142.7 150">

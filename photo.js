@@ -19,14 +19,16 @@ class Photo {
   }
 
 
-  updatePhoto() {
-
+  updatePhoto(newValues, oldValues) {
+    if (oldValues === 'card-title') {
+      this.title = newValues;
+    } else if (oldValues === 'card-caption') {
+      this.caption = newValues;
+    }
   }
 
-  favoritePhoto() {
-    // if (this.favorite === true) {
-
-    // }
+  changeFavoritePhoto() {
+    this.favorite = !this.favorite;
   }
 
 
