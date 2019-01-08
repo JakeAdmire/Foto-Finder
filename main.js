@@ -35,6 +35,29 @@ function enableUpload() {
 }
 
 
+// document.querySelector("").addEventListener("click", manipulateCard);
+
+
+// function manipulateCard() {
+//   if (event.target.classList.contains("classname")) {
+//     functionname();
+//   } else if (event.target.classList.contains("classname")) {
+//     functionname();
+//   }
+// }
+
+
+
+// event listener for enter key (key code 13) triggers a function
+titleInput.addEventListener("keydown", editContent);
+captionInput.addEventListener("keydown", editContent);
+  // then focus lost on the editable card
+function editContent(e) {
+  if (e.keyCode === 13) {
+    e.target.toggleAttribute("contenteditable");
+  }
+}
+
 
 
 
@@ -68,11 +91,11 @@ function appendPhotos(photo) {
   cardGallery.innerHTML += 
   `<article class="card ease" data-id="${photo.id}">
       <section class="card-title">
-        <h4>${photo.title}</h4>
+        <h4 contenteditable="true">${photo.title}</h4>
       </section>
       <img src=${photo.file} />
       <section class="card-caption">
-        <p>${photo.caption}</p>
+        <p contenteditable="true">${photo.caption}</p>
       </section>
       <section class="card-footer">
         <svg class="trash-svg point" viewBox="0 0 142.7 150">
