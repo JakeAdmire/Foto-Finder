@@ -1,10 +1,11 @@
 class Photo {
 
-  constructor(id, title, file, caption) {
+  constructor(id, title, file, caption, favorite) {
     this.id = id;
     this.title = title;
     this.file = file;
     this.caption = caption;
+    this.favorite = favorite || false;
   }
 
 
@@ -20,6 +21,12 @@ class Photo {
 
   updatePhoto() {
 
+  }
+
+  favoritePhoto() {
+    // if (this.favorite === true) {
+
+    // }
   }
 
 
