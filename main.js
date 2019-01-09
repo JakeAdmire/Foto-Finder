@@ -5,14 +5,17 @@ var hiddenInput = document.querySelector(".hide-input");
 var titleInput = document.querySelector(".title-input");
 var captionInput = document.querySelector(".caption-input");
 var fileInput = document.querySelector('.hide-input[type="file"]'); 
+var faveCount = document.querySelector(".fave-count");
 var keys = Object.keys(localStorage);
 var imagesArray = [];
 var reader = new FileReader();
+var favoriteCounter = 0;
 
 window.onload = function() {
 if (keys.length > 0) {
     // uploadPrompt.classList.add("hidden");
     appendCards();
+    faveCounter();
   } else {
     // uploadPrompt.classList.remove("hidden");
   }
@@ -30,6 +33,17 @@ function appendCards() {
     buildCard(newPhoto);
   }
 }
+
+function faveCounter() {
+  for (var i = 0; i < keys.length; i++) {
+    var parseObj = JSON.parse(localStorage.getItem(keys[i]));
+    if (parseObj.favorite === true) {
+      favoriteCounter++;
+      faveCount.innerText = favoriteCounter;
+    }
+  }
+}
+
 
 
 titleInput.addEventListener("keyup", enableUpload);
@@ -116,8 +130,12 @@ function styleHeart(index) {
   if (imagesArray[index].favorite === true) {
     var path = event.target.closest("path");
     path.classList.add("display-red");
+    favoriteCounter++;
+    faveCount.innerText = favoriteCounter;
   } else {
     var path = event.target.closest("path");
     path.classList.remove("display-red");
+    favoriteCounter--;
+    faveCount.innerText = favoriteCounter;
   }
 }
