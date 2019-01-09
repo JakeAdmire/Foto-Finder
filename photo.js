@@ -15,7 +15,7 @@ class Photo {
     localStorage.removeItem(this.id);
   }
 
-  updatePhoto(newValues, oldValues) {
+  updatePhoto(oldValues, newValues) {
     this[oldValues] = newValues;
   }
 

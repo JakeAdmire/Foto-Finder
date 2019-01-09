@@ -320,6 +320,18 @@ button.disabled:hover {
   fill: #fff;
 }
 
+/*----------UPLOAD-PROMPT----------*/
+.upload-prompt {
+  color: grey;
+  text-align: center;
+  margin: 35px 0px 70px;
+  font-size: 67px;
+}
+
+h1.hidden {
+  display: none;
+}
+
 /*--------------------MEDIA QUERIES--------------------*/
 @media only screen and (max-width:990px) {
   header{

@@ -2,6 +2,7 @@ var uploadPrompt = document.querySelector(".upload-prompt");
 var cardGallery = document.querySelector(".card-container");
 var albumButton = document.querySelector(".album-btn");
 var hiddenInput = document.querySelector(".hide-input");
+var uploadButton = document.querySelector(".upload-btn"); 
 var titleInput = document.querySelector(".title-input");
 var captionInput = document.querySelector(".caption-input");
 var fileInput = document.querySelector('.hide-input[type="file"]'); 
@@ -13,12 +14,20 @@ var reader = new FileReader();
 var favoriteCounter = 0;
 
 window.onload = function() {
+  styleGallery();
 if (keys.length > 0) {
-    // uploadPrompt.classList.add("hidden");
     appendCards();
     faveCounter();
+  }
+}
+
+styleGallery();
+
+function styleGallery() {
+  if (localStorage.length > 0) {
+    uploadPrompt.classList.add("hidden");
   } else {
-    // uploadPrompt.classList.remove("hidden");
+    uploadPrompt.classList.remove("hidden");
   }
 }
 
@@ -34,6 +43,13 @@ function appendCards() {
     buildCard(newPhoto);
   }
 }
+
+
+hiddenInput.addEventListener("change", changeUploadText);
+
+function changeUploadText() {
+  uploadButton.innerText = hiddenInput.files[0].name;
+} 
 
 // 
 titleInput.addEventListener("keyup", enableUpload);
@@ -83,6 +99,7 @@ function buildCard(card) {
         </svg>
       </section>
     </article>`
+    styleGallery();
 }
 
 // 
@@ -91,6 +108,7 @@ cardGallery.addEventListener("click", manipulateCard);
 function manipulateCard() {
   if (event.target.classList.contains("trash-svg")) {
     deleteCard(event);
+    styleGallery();
   } else if (event.target.classList.contains("fave-svg")) {
     faveCard(event);
   }
@@ -104,6 +122,7 @@ function deleteCard() {
   })
   imagesArray[index].deleteFromStorage();
   cardArticle.remove();
+  // styleGallery();
 }
 
 // 
@@ -182,12 +201,11 @@ function contentGrab(e) {
 }
 
 function contentChange(index, targetClass, text) {
+  console.log(text);
   if (targetClass.classList.contains("card-title")) {
     imagesArray[index].updatePhoto("title", text);
     imagesArray[index].saveToStorage(imagesArray);
-    console.log('got here');
-  }
-  if (targetClass === "card-caption") {
+  } else if (targetClass.classList.contains("card-caption")) {
     imagesArray[index].updatePhoto("caption", text);
     imagesArray[index].saveToStorage(imagesArray);
   }
