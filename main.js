@@ -6,6 +6,7 @@ var titleInput = document.querySelector(".title-input");
 var captionInput = document.querySelector(".caption-input");
 var fileInput = document.querySelector('.hide-input[type="file"]'); 
 var faveCount = document.querySelector(".fave-count");
+var searchBar = document.querySelector(".search-bar");
 var keys = Object.keys(localStorage);
 var imagesArray = [];
 var reader = new FileReader();
@@ -34,18 +35,7 @@ function appendCards() {
   }
 }
 
-function faveCounter() {
-  for (var i = 0; i < keys.length; i++) {
-    var parseObj = JSON.parse(localStorage.getItem(keys[i]));
-    if (parseObj.favorite === true) {
-      favoriteCounter++;
-      faveCount.innerText = favoriteCounter;
-    }
-  }
-}
-
-
-
+// 
 titleInput.addEventListener("keyup", enableUpload);
 captionInput.addEventListener("keyup", enableUpload);
 fileInput.addEventListener("change", enableUpload);
@@ -59,7 +49,6 @@ function enableUpload() {
   albumButton.disabled = true;
  }
 }
-
 
 albumButton.addEventListener('click', function(element) {
   event.preventDefault();
@@ -96,7 +85,7 @@ function buildCard(card) {
     </article>`
 }
 
-
+// 
 cardGallery.addEventListener("click", manipulateCard);
 
 function manipulateCard() {
@@ -117,6 +106,7 @@ function deleteCard() {
   cardArticle.remove();
 }
 
+// 
 function faveCard() {
   var cardArticle = event.target.closest("article");
   var articleID = parseInt(cardArticle.dataset.id);
@@ -126,6 +116,16 @@ function faveCard() {
   imagesArray[index].changeFavoritePhoto();
   imagesArray[index].saveToStorage(imagesArray);
   styleHeart(index);
+}
+
+function faveCounter() {
+  for (var i = 0; i < keys.length; i++) {
+    var parseObj = JSON.parse(localStorage.getItem(keys[i]));
+    if (parseObj.favorite === true) {
+      favoriteCounter++;
+      faveCount.innerText = favoriteCounter;
+    }
+  }
 }
 
 function styleHeart(index) {
@@ -142,6 +142,7 @@ function styleHeart(index) {
   }
 }
 
+// 
 cardGallery.addEventListener("click", setEditable);
 
 function setEditable() {
@@ -154,7 +155,6 @@ function setEditable() {
     event.target.addEventListener('blur', saveOnClick);
   }
 }
-
 
 cardGallery.addEventListener("keydown", saveOnEnter);
 
@@ -170,7 +170,6 @@ function saveOnClick(e) {
   setUneditable();
 }
 
-
 function contentGrab(e) {
   var cardArticle = event.target.closest("article");
   var articleID = parseInt(cardArticle.dataset.id);
@@ -181,7 +180,6 @@ function contentGrab(e) {
   var text = e.target.innerText;
   contentChange(index, targetClass, text);
 }
-
 
 function contentChange(index, targetClass, text) {
   if (targetClass.classList.contains("card-title")) {
@@ -195,8 +193,24 @@ function contentChange(index, targetClass, text) {
   }
 }
 
-
 function setUneditable() {
   event.target.contentEditable = false;
 }
 
+// 
+searchBar.addEventListener("keyup", searchFilter);
+
+function searchFilter() {
+  console.log('searching...')
+  var searchCaps = searchBar.value.toUpperCase();
+  var filteredSearch = imagesArray.filter(function(card) {
+    var titleSearch = card.title.toUpperCase();
+    var captionSearch = card.caption.toUpperCase();
+    return titleSearch.includes(searchCaps) || captionSearch.includes(searchCaps);
+  })
+  var gallery = document.querySelector(".card-container");
+  gallery.innerHTML = "";
+  filteredSearch.forEach(function(card) {
+    buildCard(card);
+  })
+}
