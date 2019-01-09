@@ -71,6 +71,8 @@ function createCard(e) {
   var photoObj = new Photo(Date.now(), titleInput.value, e.target.result, captionInput.value);
   photoObj.saveToStorage();
   buildCard(photoObj);
+  document.querySelector(".foto-form").reset();
+  enableUpload();
 }
 
 function buildCard(card) {
