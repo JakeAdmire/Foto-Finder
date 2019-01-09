@@ -1,5 +1,6 @@
-## FotoFinder AKA SHITstagram
+## FotoFinder
 The goal of this project was to follow an HTML/CSS comp as well as implement JavaScript functionality throughout.
+Javascript is functional up through Phase 2 with small bits of Phase 3.
 
 ### Screenshots
 #### Provided Full-Size Comp (Desktop version)
@@ -7,8 +8,6 @@ The goal of this project was to follow an HTML/CSS comp as well as implement Jav
 
 #### Provided Mobile Comp
 ![Image of the provided mobile comp for Foto Finder](media/fotofinder-comp2.png)
-
-
 
 ### Tech/framework used
 <b>Built with</b>
