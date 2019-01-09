@@ -79,11 +79,11 @@ function buildCard(card) {
   cardGallery.innerHTML += 
   `<article class="card ease" data-id="${card.id}">
       <section class="card-title">
-        <h4 class="editable card-title" contenteditable="true">${card.title}</h4>
+        <h4 class="editable card-title">${card.title}</h4>
       </section>
       <img src=${card.file} />
       <section class="card-caption">
-        <p class="editable card-caption" contenteditable="true">${card.caption}</p>
+        <p class="editable card-caption">${card.caption}</p>
       </section>
       <section class="card-footer">
         <svg class="trash-svg point" viewBox="0 0 142.7 150">
@@ -141,3 +141,62 @@ function styleHeart(index) {
     faveCount.innerText = favoriteCounter;
   }
 }
+
+cardGallery.addEventListener("click", setEditable);
+
+function setEditable() {
+  if (event.target.classList.contains("card-title")) {
+    event.target.contentEditable = true;
+    event.target.addEventListener('blur', saveOnClick);
+  }
+  if (event.target.classList.contains("card-caption")) {
+    event.target.contentEditable = true;
+    event.target.addEventListener('blur', saveOnClick);
+  }
+}
+
+
+cardGallery.addEventListener("keydown", saveOnEnter);
+
+function saveOnEnter(e) {
+  if (e.keyCode === 13) {
+    contentGrab(e);
+    setUneditable();
+  }
+}
+
+function saveOnClick(e) {
+  contentGrab(e);
+  setUneditable();
+}
+
+
+function contentGrab(e) {
+  var cardArticle = event.target.closest("article");
+  var articleID = parseInt(cardArticle.dataset.id);
+  var index = imagesArray.findIndex(function(card) {
+    return card.id === articleID;
+});
+  var targetClass = e.target;
+  var text = e.target.innerText;
+  contentChange(index, targetClass, text);
+}
+
+
+function contentChange(index, targetClass, text) {
+  if (targetClass.classList.contains("card-title")) {
+    imagesArray[index].updatePhoto("title", text);
+    imagesArray[index].saveToStorage(imagesArray);
+    console.log('got here');
+  }
+  if (targetClass === "card-caption") {
+    imagesArray[index].updatePhoto("caption", text);
+    imagesArray[index].saveToStorage(imagesArray);
+  }
+}
+
+
+function setUneditable() {
+  event.target.contentEditable = false;
+}
+
