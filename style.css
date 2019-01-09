@@ -42,6 +42,7 @@ input::placeholder {
   cursor: pointer;
 }
 
+svg path.display-red,
 .display-red {
   color: #e26d5a;
   fill: #e26d5a;
@@ -311,7 +312,7 @@ button.disabled:hover {
   width: 40px;
 }
 
-.card svg path {
+.card path {
   fill: #938284;
 }
 
