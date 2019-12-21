@@ -32,7 +32,7 @@
 
 ### Media
 
-![full page screenshot]([https://raw.githubusercontent.com/JakeAdmire/Foto-Finder/master/media/fotofinder-comp1.png](https://raw.githubusercontent.com/JakeAdmire/Foto-Finder/master/media/fotofinder-comp1.png)
+![full page screenshot](https://raw.githubusercontent.com/JakeAdmire/Foto-Finder/master/media/fotofinder-comp1.png)
 
 ### Built With
 
